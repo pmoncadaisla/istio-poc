@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    build: api
+    ports:
+      - "8080:80"
+    depends_on:
+    - audit
+    - coverage
+    - mailer
+  audit:
+    build: audit
+    depends_on: 
+      - redis
+  coverage:
+    build: coverage
+    depends_on:
+      - iam
+  iam:
+    build: iam
+  mailer:
+    build: mailer
+  redis:
+    image: redis
