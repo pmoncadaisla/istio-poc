@@ -4,6 +4,20 @@ steps:
 
   - id: api
     name: 'gcr.io/cloud-builders/docker'
-    env:
-    - 'APP=api'
-    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/$$APP', '$$APP/', '-f', '$$APP/Dockerfile']
+    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/api', 'api/', '-f', 'api/Dockerfile']
+
+  - id: audit
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/audit', 'audit/', '-f', 'audit/Dockerfile']
+
+  - id: coverage
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/coverage', 'coverage/', '-f', 'coverage/Dockerfile']
+
+  - id: iam
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/iam', 'iam/', '-f', 'iam/Dockerfile']
+
+  - id: mailer
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/mailer', 'mailer/', '-f', 'mailer/Dockerfile']
