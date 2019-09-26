@@ -19,7 +19,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/mailer:latest
+      - image: eu.gcr.io/pmoncada-001/istio-poc/mailer:latest
         name: mailer
         resources: {}
 status: {}

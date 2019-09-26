@@ -19,7 +19,7 @@ spec:
         stack: demo
     spec:
       containers:
-      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/coverage@sha256:f4cfe812ffa06fb8f3a626cc4f5ca3121876a4d4527fc7d5a14d645640971ab2
+      - image: eu.gcr.io/pmoncada-001/istio-poc/coverage:v1
         name: coverage
         resources: {}
 status: {}

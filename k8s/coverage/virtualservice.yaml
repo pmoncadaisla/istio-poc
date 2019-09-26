@@ -8,12 +8,12 @@ spec:
   - coverage
   http:
   - route:
-    # - destination:
-      #   host: coverage
-      #   subset: v1
-      # weight: 80
     - destination:
         host: coverage
-        subset: v2
+        subset: v1
       weight: 100
-    timeout: 1s
+    # - destination:
+    #     host: coverage
+    #     subset: v2
+    #   weight: 100
+    #timeout: 1s

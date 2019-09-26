@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  labels:
+    app: istio
+  name: ingressgateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - '*.istio.gcp.moncadaisla.es'
+    port:
+      name: http-ingressgateway-k8s
+      number: 80
+      protocol: HTTP

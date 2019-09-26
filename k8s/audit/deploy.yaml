@@ -19,7 +19,7 @@ spec:
         stack: demo
     spec:
       containers:
-      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/audit:latest
+      - image: eu.gcr.io/pmoncada-001/istio-poc/audit:latest
         name: audit
         resources: {}
 status: {}

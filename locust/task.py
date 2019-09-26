@@ -11,4 +11,4 @@ class WebsiteUser(HttpLocust):
     task_set = CsdBehavior
     min_wait = 5000
     max_wait = 9000
-    host = "https://api-csd.dev-01.k8s.masmovil.com/ping"
+    host = "http://api.istio.gcp.moncadaisla.es/ping"
