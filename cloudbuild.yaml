@@ -5,19 +5,31 @@ steps:
   - id: api
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/api', 'api/', '-f', 'api/Dockerfile']
+    waitFor: ['-']
 
   - id: audit
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/audit', 'audit/', '-f', 'audit/Dockerfile']
+    waitFor: ['-']
 
   - id: coverage
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/coverage', 'coverage/', '-f', 'coverage/Dockerfile']
+    waitFor: ['-']
 
   - id: iam
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/iam', 'iam/', '-f', 'iam/Dockerfile']
+    waitFor: ['-']
 
   - id: mailer
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/mailer', 'mailer/', '-f', 'mailer/Dockerfile']
+    waitFor: ['-']
+
+images:
+  - eu.gcr.io/pmoncada-001/istio-poc/api
+  - eu.gcr.io/pmoncada-001/istio-poc/audit
+  - eu.gcr.io/pmoncada-001/istio-poc/coverage
+  - eu.gcr.io/pmoncada-001/istio-poc/iam
+  - eu.gcr.io/pmoncada-001/istio-poc/mailer
