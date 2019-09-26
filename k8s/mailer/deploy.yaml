@@ -5,7 +5,6 @@ metadata:
     app: mailer
     stack: demo
   name: mailer
-  namespace: csd
 spec:
   replicas: 1
   selector:

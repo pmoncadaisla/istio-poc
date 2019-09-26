@@ -4,32 +4,70 @@ steps:
 
   - id: api
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/api:$COMMIT_SHA', 'api/', '-f', 'api/Dockerfile']
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      IMAGE=api
+      docker build -t eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA $$IMAGE/ -f $$IMAGE/Dockerfile
+      docker push eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA
     waitFor: ['-']
 
   - id: audit
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/audit:$COMMIT_SHA', 'audit/', '-f', 'audit/Dockerfile']
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      IMAGE=api
+      docker build -t eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA $$IMAGE/ -f $$IMAGE/Dockerfile
+      docker push eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA
     waitFor: ['-']
 
   - id: coverage
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/coverage:$COMMIT_SHA', 'coverage/', '-f', 'coverage/Dockerfile']
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      IMAGE=api
+      docker build -t eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA $$IMAGE/ -f $$IMAGE/Dockerfile
+      docker push eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA
     waitFor: ['-']
 
   - id: iam
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/iam:$COMMIT_SHA', 'iam/', '-f', 'iam/Dockerfile']
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      IMAGE=api
+      docker build -t eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA $$IMAGE/ -f $$IMAGE/Dockerfile
+      docker push eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA
     waitFor: ['-']
 
   - id: mailer
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/mailer:$COMMIT_SHA', 'mailer/', '-f', 'mailer/Dockerfile']
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      IMAGE=api
+      docker build -t eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA $$IMAGE/ -f $$IMAGE/Dockerfile
+      docker push eu.gcr.io/pmoncada-001/istio-poc/$$IMAGE:$COMMIT_SHA
     waitFor: ['-']
 
-images:
-  - eu.gcr.io/pmoncada-001/istio-poc/api:$COMMIT_SHA
-  - eu.gcr.io/pmoncada-001/istio-poc/audit:$COMMIT_SHA
-  - eu.gcr.io/pmoncada-001/istio-poc/coverage:$COMMIT_SHA
-  - eu.gcr.io/pmoncada-001/istio-poc/iam:$COMMIT_SHA
-  - eu.gcr.io/pmoncada-001/istio-poc/mailer:$COMMIT_SHA
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      kubectl apply -f k8s/api
+      kubectl apply -f k8s/audit
+      kubectl apply -f k8s/coverage
+      kubectl apply -f k8s/iam
+      kubectl apply -f k8s/mailer
+    env:
+    - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=keepcoding-2'

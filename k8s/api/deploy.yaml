@@ -4,7 +4,6 @@ metadata:
   labels:
     app: api
   name: api
-  namespace: csd
 spec:
   replicas: 1
   selector:

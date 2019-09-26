@@ -5,7 +5,6 @@ metadata:
     app: coverage
     stack: demo
   name: coverage
-  namespace: csd
 spec:
   replicas: 1
   selector:

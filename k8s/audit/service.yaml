@@ -4,7 +4,6 @@ metadata:
   labels:
     app: audit
   name: audit
-  namespace: csd
 spec:
   ports:
   - name: http-app

@@ -5,7 +5,6 @@ metadata:
     app: redis
     stack: demo
   name: redis
-  namespace: csd
 spec:
   replicas: 1
   selector:

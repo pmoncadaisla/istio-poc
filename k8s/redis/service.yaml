@@ -4,7 +4,6 @@ metadata:
   labels:
     app: redis
   name: redis
-  namespace: csd
 spec:
   ports:
   - name: tcp-csd-redis
