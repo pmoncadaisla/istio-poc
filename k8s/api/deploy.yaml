@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api
+  name: api
+  namespace: csd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: api
+        version: v1
+    spec:
+      containers:
+      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/api:latest
+        name: api
+        resources: {}
+status: {}

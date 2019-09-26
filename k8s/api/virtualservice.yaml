@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: api
+  namespace: csd
+spec:
+  gateways:
+  - default/ingressgateway
+  hosts:
+  - api-csd.dev-01.k8s.masmovil.com
+  http:
+  - route:
+    - destination:
+        host: api.csd.svc.cluster.local
+        port:
+          number: 80

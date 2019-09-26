@@ -9,7 +9,6 @@ import (
 func main() {
 	r := gin.Default()
 	r.GET("/check", func(c *gin.Context) {
-		time.Sleep(3000 * time.Millisecond)
 		_, err := http.Get("http://iam/check")
 		if err != nil {
 			c.JSON(500, gin.H{

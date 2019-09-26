@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mailer
+    stack: demo
+  name: mailer
+  namespace: csd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailer
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mailer
+        stack: demo
+        version: v1
+    spec:
+      containers:
+      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/mailer:latest
+        name: mailer
+        resources: {}
+status: {}

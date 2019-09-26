@@ -16,25 +16,25 @@ func main() {
 		var resp *http.Response
 
 		resp, err = http.Get("http://audit/log")
-		if resp.StatusCode != 200 {
+		if err != nil || resp.StatusCode != 200 {
 			errCode = errors.New("Error calling service")
 		}
 		resp, err = http.Get("http://coverage/check")
-		if resp.StatusCode != 200 {
+		if err != nil || resp.StatusCode != 200 {
 			errCode = errors.New("Error calling service")
 		}
 		resp, err = http.Get("http://mailer/send")
-		if resp.StatusCode != 200 {
+		if err != nil || resp.StatusCode != 200 {
 			errCode = errors.New("Error calling service")
+		}
+
+		if errCode != nil {
+			c.JSON(500, gin.H{"errorMsg": errCode})
+			return
 		}
 
 		if err != nil {
 			c.JSON(500, gin.H{"error": err})
-			return
-		}
-
-		if errCode != nil {
-			c.JSON(500, gin.H{"error": errCode})
 			return
 		}
 

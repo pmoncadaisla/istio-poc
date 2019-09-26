@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: audit
+    stack: demo
+  name: audit
+  namespace: csd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: audit
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: audit
+        version: v1
+        stack: demo
+    spec:
+      containers:
+      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/audit:latest
+        name: audit
+        resources: {}
+status: {}

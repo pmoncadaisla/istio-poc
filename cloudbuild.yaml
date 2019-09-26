@@ -1,0 +1,9 @@
+
+
+steps:
+
+  - id: api
+    name: 'gcr.io/cloud-builders/docker'
+    env:
+    - 'APP=api'
+    args: ['build', '-t', 'eu.gcr.io/pmoncada-001/istio-poc/$$APP', '$$APP/', '-f', '$$APP/Dockerfile']

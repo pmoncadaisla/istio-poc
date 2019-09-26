@@ -1,0 +1,19 @@
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: coverage
+  namespace: csd
+spec:
+  hosts:
+  - coverage
+  http:
+  - route:
+    - destination:
+        host: coverage
+        subset: v1
+      weight: 100
+    # - destination:
+    #     host: coverage
+    #     subset: v2
+    #   weight: 100

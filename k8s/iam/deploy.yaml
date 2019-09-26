@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: iam
+    stack: demo
+  name: iam
+  namespace: csd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iam
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: iam
+        stack: demo
+        version: v1
+    spec:
+      containers:
+      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/iam:latest
+        name: iam
+        resources: {}
+status: {}

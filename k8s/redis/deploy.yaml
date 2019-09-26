@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis
+    stack: demo
+  name: redis
+  namespace: csd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: redis
+        stack: demo
+        version: v1
+    spec:
+      containers:
+      - image: redis
+        name: redis
+        resources: {}
+status: {}

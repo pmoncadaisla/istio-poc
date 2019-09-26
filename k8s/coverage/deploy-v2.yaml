@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: coverage
+    stack: demo
+  name: coverage-v2
+  namespace: csd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coverage
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: coverage
+        stack: demo
+        version: v2
+    spec:
+      containers:
+      - image: gcr.io/mm-cloudbuild/github.com/masmovil/cloud-summit-demo/coverage@sha256:2aef1a92b021827f9443f41456ab157d2a2fee3cff245274a290af0c9875192c
+        name: coverage
+        resources: {}
+status: {}

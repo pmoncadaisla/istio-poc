@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: api
+  name: api
+  namespace: csd
+spec:
+  ports:
+  - name: http-app
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: api
+  type: ClusterIP
+status:
+  loadBalancer: {}
